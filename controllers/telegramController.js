@@ -18,6 +18,7 @@ const commandsRouter = {
   "/italia": async (message, res) => {
     const response = await axios.get(italyCovidDataUrl);
     const data = response.data;
+    console.log(data);
 
     if (!data) {
       return next(new Error("Could not find COVID-19 information"));
@@ -38,6 +39,8 @@ const sendResponseToTelegram = async (senderMessage, textToSend) => {
     text: textToSend,
     parse_mode: "html",
   };
+
+  console.log(telegramSendMessagePath);
 
   await axiosTelegram.post(telegramSendMessagePath, parameters);
 };
