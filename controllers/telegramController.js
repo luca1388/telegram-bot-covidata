@@ -8,7 +8,7 @@ const handleNewMessage = async (req, res, _next) => {
   const userMessage = req.body.message;
   console.log(userMessage);
 
-  commandsRouter[commandsRouter[userMessage.text] ? message.text : "/unknown"](
+  commandsRouter[commandsRouter[userMessage.text] ? userMessage.text : "/unknown"](
     userMessage,
     res
   );
