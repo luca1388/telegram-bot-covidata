@@ -24,7 +24,9 @@ const commandsRouter = {
       return next(new Error("Could not find COVID-19 information"));
     }
 
-    await sendResponseToTelegram(message, JSON.stringify(data));
+    let responseText = `<strong>Casi totali: </strong> ${data.cases}`;
+
+    await sendResponseToTelegram(message, responseText);
     res.end();
   },
   "/unknown": async (message, res) => {
