@@ -24,7 +24,13 @@ const commandsRouter = {
       return next(new Error("Could not find COVID-19 information"));
     }
 
-    let responseText = `<strong>Casi totali: </strong> ${data.cases}`;
+    let responseText = `
+    <strong>Casi totali: </strong> ${data.cases}<br/>
+    <strong>Deceduti totali: </strong> ${data.deaths}<br/>
+    <strong>Malati attuali: </strong> ${data.active}<br/>
+    <strong>Casi di oggi: </strong> ${data.todayCases}<br/>
+    <strong>Deceduti di oggi: </strong> ${data.todayDeaths}
+    `;
 
     await sendResponseToTelegram(message, responseText);
     res.end();
