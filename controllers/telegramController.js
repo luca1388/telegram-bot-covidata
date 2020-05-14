@@ -30,7 +30,6 @@ const commandsRouter = {
     res.end();
   },
   "/mondo": async (message, res) => {
-    async (message, res) => {
       const response = await axios.get(getAllCovidDataUrl);
       const data = response.data;
   
@@ -42,7 +41,6 @@ const commandsRouter = {
   
       await sendResponseToTelegram(message, responseText);
       res.end();
-    }
   },
   "/unknown": async (message, res) => {
     await sendResponseToTelegram(message, "Uhmm, non ho capito prova con /italia o /mondo");
