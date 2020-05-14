@@ -2,9 +2,11 @@ const axiosTelegram = require("../util/axiosTelegram").axiosTelegram;
 const axios = require("axios").default;
 
 const italyCovidDataUrl = require("../util/urls").getItalyCovidDataUrl;
+const telegramSendMessagePath = require("../util/constants").telegramSendMessagePath;
 
 const handleNewMessage = async (req, res, _next) => {
   const userMessage = req.body.message;
+  console.log(userMessage);
 
   commandsRouter[commandsRouter[userMessage.text] ? message.text : "/unknown"](
     userMessage,
@@ -37,7 +39,7 @@ const sendResponseToTelegram = async (senderMessage, textToSend) => {
     parse_mode: "html",
   };
 
-  await axiosTelegram.post(sendMessageUrl, parameters);
+  await axiosTelegram.post(telegramSendMessagePath, parameters);
 };
 
 exports.handleNewMessage = handleNewMessage;
