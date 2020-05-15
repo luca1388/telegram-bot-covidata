@@ -10,21 +10,18 @@ const handleNewMessage = async (req, res, _next) => {
 
   commandsRouter[commandsRouter[userMessage.text] ? userMessage.text : "/unknown"](
     userMessage,
-    req,
     res
   );
 };
 
 const commandsRouter = {
-  "/italia": async (message, req, res) => {
+  "/italia": async (message, res) => {
     const response = await axios.get(italyCovidDataUrl);
     const data = response.data;
 
     if (!data) {
       return next(new Error("Could not find COVID-19 information"));
     }
-
-    console.log(req.headers['accept-language']);
 
     let responseText = `<strong>Casi totali: </strong> ${new Intl.NumberFormat().format(data.cases)}\n<strong>Deceduti totali: </strong> ${data.deaths}\n<strong>Malati attuali: </strong> ${data.active}\n<strong>Casi di oggi: </strong> ${data.todayCases}\n<strong>Deceduti di oggi: </strong> ${data.todayDeaths}`;
 
