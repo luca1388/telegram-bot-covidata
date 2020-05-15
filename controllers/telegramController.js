@@ -7,7 +7,6 @@ const telegramSendMessagePath = require("../util/constants").telegramSendMessage
 
 const handleNewMessage = async (req, res, _next) => {
   const userMessage = req.body.message;
-  console.log(userMessage);
 
   commandsRouter[commandsRouter[userMessage.text] ? userMessage.text : "/unknown"](
     userMessage,
@@ -58,8 +57,6 @@ const sendResponseToTelegram = async (senderMessage, textToSend) => {
     text: textToSend,
     parse_mode: "html",
   };
-
-  console.log(telegramSendMessagePath);
 
   await axiosTelegram.post(telegramSendMessagePath, parameters);
 };
