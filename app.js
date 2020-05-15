@@ -7,6 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// Telegram expects the backend to have a POST endpoint named "/new-message"
 app.use("/new-message", telegramRoutes);
 
 app.get("/", (req, res, next) => {
@@ -16,6 +17,7 @@ app.get("/", (req, res, next) => {
   });
 });
 
+// If a request comes here it means nobody handles it and
 app.use(() => {
   throw new Error("Could not find the requested resource.");
 });
